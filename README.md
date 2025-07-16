@@ -1,11 +1,11 @@
-API Fórum (Desafio Alura)
-Descrição do Projeto
+API Fórum - Desafio Alura
+📚 Descrição do Projeto
 
 API REST para gerenciamento de tópicos em um fórum, feita com Spring Boot e JPA.
 Permite criar, listar, detalhar, atualizar e excluir tópicos, além de filtrar por curso e ano.
 
-O projeto utiliza banco de dados MySQL para persistência e paginação nos endpoints.
-Tecnologias Utilizadas
+Utiliza banco de dados MySQL para persistência e paginação nos endpoints.
+🛠 Tecnologias Utilizadas
 
     Java 17+
 
@@ -19,9 +19,9 @@ Tecnologias Utilizadas
 
     Maven
 
-Configuração do Banco de Dados MySQL
+🗄 Configuração do Banco de Dados MySQL
 
-Crie o banco e a tabela topico com os comandos abaixo:
+Execute os comandos abaixo para criar o banco e a tabela necessária:
 
 CREATE DATABASE desafio_forum CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -36,9 +36,9 @@ CREATE TABLE topico (
     data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-    Importante: A coluna data_criacao foi criada para armazenar a data de criação do tópico.
+    ⚠️ A coluna data_criacao armazena a data e hora de criação do tópico.
 
-Configuração do Projeto
+⚙️ Configuração do Projeto
 
 No arquivo application.properties ou application.yml, configure a conexão com seu banco MySQL:
 
@@ -50,62 +50,61 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 
-Endpoints Disponíveis
+📡 Endpoints Disponíveis
 Método	URI	Descrição	Request Body	Response
 POST	/topicos	Criar um novo tópico	JSON com título, mensagem, autor, curso	Objeto Topico criado
 GET	/topicos	Listar tópicos (paginado)	Parâmetros opcionais: curso, ano, paginação	Página de tópicos
 GET	/topicos/{id}	Detalhar um tópico pelo ID	—	Objeto Topico ou 404
 PUT	/topicos/{id}	Atualizar um tópico pelo ID	JSON com título, mensagem, autor, curso	Objeto Topico atualizado ou 404
 DELETE	/topicos/{id}	Excluir um tópico pelo ID	—	200 OK ou 404
-Como Testar a API
-Usando o Insomnia ou Postman
+🚀 Como Testar a API
+Usando Insomnia ou Postman
+Criar tópico
 
-    Criar tópico
+    Método: POST
 
-        Método: POST
+    URL: http://localhost:8080/topicos
 
-        URL: http://localhost:8080/topicos
+    Body (JSON):
 
-        Body (JSON):
+{
+  "titulo": "Título do tópico",
+  "mensagem": "Mensagem do tópico",
+  "autor": "Nome do autor",
+  "curso": "Nome do curso"
+}
 
-        {
-          "titulo": "Título do tópico",
-          "mensagem": "Mensagem do tópico",
-          "autor": "Nome do autor",
-          "curso": "Nome do curso"
-        }
+Listar tópicos (com paginação e filtros opcionais)
 
-    Listar tópicos (com paginação e filtros opcionais)
+    Método: GET
 
-        Método: GET
+    URL: http://localhost:8080/topicos?curso=Spring Boot&ano=2025&page=0&size=10
 
-        URL: http://localhost:8080/topicos?curso=Spring Boot&ano=2025&page=0&size=10
+Detalhar tópico
 
-    Detalhar tópico
+    Método: GET
 
-        Método: GET
+    URL: http://localhost:8080/topicos/{id}
 
-        URL: http://localhost:8080/topicos/{id}
+Atualizar tópico
 
-    Atualizar tópico
+    Método: PUT
 
-        Método: PUT
+    URL: http://localhost:8080/topicos/{id}
 
-        URL: http://localhost:8080/topicos/{id}
+    Body: JSON igual ao POST
 
-        Body: JSON igual ao POST
+Excluir tópico
 
-    Excluir tópico
+    Método: DELETE
 
-        Método: DELETE
+    URL: http://localhost:8080/topicos/{id}
 
-        URL: http://localhost:8080/topicos/{id}
-
-Sobre Autenticação e Testes no Insomnia
+🔐 Sobre Autenticação e Testes no Insomnia
 Por que usar autenticação?
 
 Sua API pode conter dados sensíveis e precisa proteger quem acessa e altera esses dados.
-Autenticação garante que somente usuários autorizados consigam usar os endpoints.
+A autenticação garante que somente usuários autorizados consigam usar os endpoints.
 Como funciona a autenticação?
 
     Geralmente usamos tokens (exemplo: JWT) para identificar o usuário após login.
@@ -114,22 +113,22 @@ Como funciona a autenticação?
 
 Como configurar o Insomnia para autenticação?
 
-    Se você usar Basic Auth (usuário e senha simples):
+    Se usar Basic Auth (usuário e senha):
     Vá na aba Auth da requisição, escolha Basic Auth e preencha usuário e senha.
 
-    Se você usar Bearer Token (JWT):
+    Se usar Bearer Token (JWT):
     Adicione um header na requisição:
 
     Authorization: Bearer <seu_token_jwt>
 
     Para testar APIs protegidas, primeiro faça a requisição de login para obter o token.
 
-Considerações Finais
+⚠️ Considerações Finais
 
     Certifique-se que o banco de dados está rodando e configurado corretamente.
 
-    Para mudanças no modelo, utilize o spring.jpa.hibernate.ddl-auto=update para atualizar as tabelas automaticamente.
+    Utilize o spring.jpa.hibernate.ddl-auto=update para atualizar as tabelas automaticamente durante o desenvolvimento.
 
-    Sempre valide os dados de entrada usando a validação (@Valid).
+    Valide sempre os dados de entrada usando a anotação @Valid.
 
-    Mensagens de erro e códigos HTTP foram configurados para indicar claramente falhas e sucesso.
+    Mensagens de erro e códigos HTTP estão configurados para indicar claramente falhas e sucessos.
