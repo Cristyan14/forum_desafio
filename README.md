@@ -39,7 +39,7 @@ CREATE TABLE topico (
 
 No arquivo application.properties ou application.yml, configure a conexão com seu banco MySQL:
 
-spring.datasource.url=jdbc:mysql://localhost:3306/desafio_forum?useSSL=false&serverTimezone=UTC
+spring.datasource.url=jdbc:mysql://localhost:porta/nome_banco?useSSL=false&serverTimezone=UTC
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 
