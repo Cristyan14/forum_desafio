@@ -1,28 +1,26 @@
-API Fórum - Desafio Alura
-📚 Descrição do Projeto
+# API Fórum - Desafio Alura
 
-API REST para gerenciamento de tópicos em um fórum, feita com Spring Boot e JPA.
+## 📚 Descrição do Projeto
+
+API REST para gerenciamento de tópicos em um fórum, feita com Spring Boot e JPA.  
 Permite criar, listar, detalhar, atualizar e excluir tópicos, além de filtrar por curso e ano.
 
 Utiliza banco de dados MySQL para persistência e paginação nos endpoints.
-🛠 Tecnologias Utilizadas
 
-    Java 17+
+## 🛠 Tecnologias Utilizadas
 
-    Spring Boot 3.x
+- Java 17+
+- Spring Boot 3.x
+- Spring Data JPA
+- MySQL
+- Jakarta Validation
+- Maven
 
-    Spring Data JPA
-
-    MySQL
-
-    Jakarta Validation
-
-    Maven
-
-🗄 Configuração do Banco de Dados MySQL
+## 🗄 Configuração do Banco de Dados MySQL
 
 Execute os comandos abaixo para criar o banco e a tabela necessária:
 
+```sql
 CREATE DATABASE desafio_forum CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE desafio_forum;
@@ -36,8 +34,7 @@ CREATE TABLE topico (
     data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-    ⚠️ A coluna data_criacao armazena a data e hora de criação do tópico.
-
+⚠️ A coluna data_criacao armazena a data e hora de criação do tópico.
 ⚙️ Configuração do Projeto
 
 No arquivo application.properties ou application.yml, configure a conexão com seu banco MySQL:
@@ -59,6 +56,7 @@ PUT	/topicos/{id}	Atualizar um tópico pelo ID	JSON com título, mensagem, autor
 DELETE	/topicos/{id}	Excluir um tópico pelo ID	—	200 OK ou 404
 🚀 Como Testar a API
 Usando Insomnia ou Postman
+
 Criar tópico
 
     Método: POST
@@ -113,16 +111,15 @@ Como funciona a autenticação?
 
 Como configurar o Insomnia para autenticação?
 
-    Se usar Basic Auth (usuário e senha):
+    Basic Auth (usuário e senha):
     Vá na aba Auth da requisição, escolha Basic Auth e preencha usuário e senha.
 
-    Se usar Bearer Token (JWT):
+    Bearer Token (JWT):
     Adicione um header na requisição:
 
     Authorization: Bearer <seu_token_jwt>
 
-    Para testar APIs protegidas, primeiro faça a requisição de login para obter o token.
-
+Para testar APIs protegidas, primeiro faça a requisição de login para obter o token.
 ⚠️ Considerações Finais
 
     Certifique-se que o banco de dados está rodando e configurado corretamente.
